@@ -74,7 +74,7 @@
        (println midje-failure-message# midje-consolation#)
 
        ;; A non-nil return value is printed, so I'll just exit here.
-       (when ~*exit-after-tests*
+       #_ (when ~*exit-after-tests*
          (System/exit (+ midje-fails#
                         (:error ct-result#)
                         (:fail ct-result#)))))
@@ -109,7 +109,7 @@
     (if lazy-test-mode?
       (eval-in-project
         project
-        `(lazytest.watch/start '~paths :run-fn '~(make-run-fn) :report-fn '~(make-report-fn))
+        `(lazytest.watch/start '~paths :run-fn ~(make-run-fn) :report-fn ~(make-report-fn))
         nil
         nil
         '(require '[clojure walk template stacktrace test string set]
